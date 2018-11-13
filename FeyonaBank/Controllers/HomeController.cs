@@ -5,34 +5,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FeyonaBank.Models;
+using FeyonaBank.Interfaces;
+using FeyonaBank.ViewModels;
 
 namespace FeyonaBank.Controllers
 {
     public class HomeController : Controller
     {
+        private IBankRepository _bankRepo;
+
+        public HomeController(IBankRepository bankRepo)
+        {
+            _bankRepo = bankRepo;
+        }
+
+
         public IActionResult Index()
         {
-            return View();
+            var model = new CustomerAccountViewModel()
+            {
+                Customers = _bankRepo.GetAllCustomers()
+            };
+
+            return View(model);
+        
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+      
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
