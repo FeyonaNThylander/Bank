@@ -1,0 +1,34 @@
+﻿@model FeyonaBank.ViewModels.TransactionsViewModel
+@{
+    ViewData["Title"] = "DepositAndWithdraw";
+}
+
+<body>
+    <div class="container body-content">
+        <br />
+        <br />
+        <h1>Deposit and Withdraw</h1>
+        <h3>- deposit to or withdraw from your bankaccount</h3>
+        <hr />
+
+
+        <br />
+        <br />
+
+        <form asp-controller="Transactions" method="post">
+            Enter bankaccount number: <br />
+            <input asp-for="BankAccount.AccountId" type="number" /><br /><br />
+            Enter amount: <br />
+            <input asp-for="Amount" type="number" /><br /><br />
+
+            <button type="submit" formaction="/Transactions/Deposit">Deposit</button>
+            <button type="submit" formaction="/Transactions/Withdraw">Withdraw</button>
+
+        </form>
+        <br />
+        <br />
+        <h3>@ViewBag.Message</h3><br />
+        <br />
+       
+    </div>
+</body>
