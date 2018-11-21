@@ -1,4 +1,5 @@
 ﻿using FeyonaBank.Models;
+using FeyonaBank.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace FeyonaBank.Interfaces
 
         bool DepositAmount(int amount, Account bankAccount);
         bool WithdrawAmount(int amount, Account bankAccount);
+        string Transfer(TransferViewModel model);
+        bool PerformTransfer(Account recieveAccount, Account transferAccount, decimal amount);
     }
 }

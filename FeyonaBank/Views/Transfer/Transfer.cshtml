@@ -1,0 +1,40 @@
+﻿@model FeyonaBank.ViewModels.TransferViewModel
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+<body>
+    <div class="container body-content">
+        <br />
+        <br />
+        <h1>Transfer</h1>
+        <h3>- transfer money from one account to another.</h3>
+        <hr />
+
+
+        <br />
+        <br />
+
+        <div>
+            <form asp-controller="Transfer" asp-action="Transfer" method="post"
+                  data-ajax="true"
+                  data-ajax-method="POST"
+                  data-ajax-mode="append"
+                  data-ajax-update="#UpdateMessage">
+                Enter bank account to transfer from: <br />
+                <input asp-for="TransferAccount.AccountId" type="number" /><br /><br />
+                Enter bank account to transfer to: <br />
+                <input asp-for="RecieveAccount.AccountId" type="number" /><br /><br />
+                Enter amount: <br />
+                <input asp-for="Amount" type="number" /><br /><br />
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <button type="submit">Transfer</button>
+
+            </form>
+        </div>
+        <br />
+        <br />
+        <div id="UpdateMessage"></div>
+    </div>
+</body>
+

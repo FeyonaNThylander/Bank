@@ -92,7 +92,7 @@ namespace FeyonaBank.Controllers
                 return View("Verification", model);
             }
 
-        }
+        }     
 
     }
 }

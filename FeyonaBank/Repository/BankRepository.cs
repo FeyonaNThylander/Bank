@@ -1,4 +1,5 @@
 ﻿using FeyonaBank.Interfaces;
+using FeyonaBank.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -115,6 +116,79 @@ namespace FeyonaBank.Models
             return true;
         }
 
+        public bool IsCorrectAccountNo(int accountNo)
+        {
+            List<Account> foundAccount = new List<Account>();
+            foreach (var cust in CustomerList)
+            {
+                foundAccount = cust.BankAccounts.Where(a => a.AccountId == accountNo).ToList();
 
+                if (foundAccount.Any())
+                {
+                    return true;
+
+                }
+            }
+
+            return false;
+
+        }
+
+        public string Transfer(TransferViewModel model)
+        {
+            if(model.Amount == 0)
+            {
+                return "<p>You can't transfer 0 SEK.</p>";
+            }
+            var recieverIsExistingAccount = IsCorrectAccountNo(model.RecieveAccount.AccountId);
+            var transferIsExistingAccount = IsCorrectAccountNo(model.TransferAccount.AccountId);
+            if (!recieverIsExistingAccount || !transferIsExistingAccount)
+            {
+                return "<p>You haven't filled in a valid account number, try again!</p>";
+            }
+
+            else
+            {
+                Account RecieveAccount;
+                Account TransferAccount;
+                foreach (var cust in CustomerList)
+                {
+                    RecieveAccount = cust.BankAccounts.Where(a => a.AccountId == model.RecieveAccount.AccountId).FirstOrDefault();
+                    TransferAccount = cust.BankAccounts.Where(a => a.AccountId == model.TransferAccount.AccountId).FirstOrDefault();
+
+
+                    var result = PerformTransfer(RecieveAccount, TransferAccount, model.Amount);
+
+                    if (!result)
+                    {
+                        return "<p>Your balance is too low.</p>";
+                    }
+                    else
+                    {
+                    return string.Format("<h4>Account {0} transferred {1} SEK to account {2}.</h4> <h5><b>Current Balance</b></h5> <p>{0} : {3} SEK</p> <p>{2} : {4} SEK", TransferAccount.AccountId, model.Amount, RecieveAccount.AccountId, TransferAccount.Balance, RecieveAccount.Balance);
+
+                    }
+
+
+                }
+                return "<p>Something went wrong, try again!</p>";
+            }
+
+
+        }
+
+        public bool PerformTransfer(Account recieveAccount, Account transferAccount, decimal amount)
+        {
+            if (transferAccount.Balance < amount)
+            {
+                return false;
+            }
+            else
+            {
+                transferAccount.Balance -= (int)amount;
+                recieveAccount.Balance += (int)amount;
+                return true;
+            }
+        }
     }
 }

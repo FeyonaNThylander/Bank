@@ -31,8 +31,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Transactions" asp-action="DepositAndWithdraw">Deposit and Withdraw</a></li>
+                    <li><a asp-area="" asp-controller="Transfer" asp-action="Transfer">Transfer</a></li>
                     @*<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
                 </ul>
             </div>
         </div>
@@ -68,7 +69,7 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

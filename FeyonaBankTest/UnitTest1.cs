@@ -61,5 +61,53 @@ namespace FeyonaBankTest
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void Transfer_Between_Accounts_Test()
+        {
+
+            Account recieve = new Account();
+            {
+                recieve.AccountId = 13019;
+                recieve.Balance = 1000;
+            }
+
+            Account transfer = new Account();
+            {
+                transfer.AccountId = 13019;
+                transfer.Balance = 5000;
+            }
+
+            BankRepository _bankRepo = new BankRepository();
+
+            bool expected = true;
+            bool actual = _bankRepo.PerformTransfer(recieve, transfer, 2000);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Transfer_Too_Low_Balance_Test()
+        {
+
+            Account recieve = new Account();
+            {
+                recieve.AccountId = 13019;
+                recieve.Balance = 5000;
+            }
+
+            Account transfer = new Account();
+            {
+                transfer.AccountId = 13019;
+                transfer.Balance = 1000;
+            }
+
+            BankRepository _bankRepo = new BankRepository();
+
+            bool expected = false;
+            bool actual = _bankRepo.PerformTransfer(recieve, transfer, 2000);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
