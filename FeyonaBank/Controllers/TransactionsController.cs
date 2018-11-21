@@ -78,7 +78,7 @@ namespace FeyonaBank.Controllers
                 return View("DepositAndWithdraw", model);
             }
 
-            if (customerAccount.Balance <= model.Amount)
+            if (customerAccount.Balance < model.Amount)
             {
                 ViewBag.Message = "Your amount is more than the total balance of the account, please enter a new amount.";
                 return View("DepositAndWithdraw", model);

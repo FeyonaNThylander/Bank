@@ -107,11 +107,12 @@ namespace FeyonaBank.Models
             {
                 return false;
             }
-            else
+
+            if (bankAccount.Balance >= amount)
             {
                 bankAccount.Balance -= amount;
-                return true;
             }
+            return true;
         }
 
 
