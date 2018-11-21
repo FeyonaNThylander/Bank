@@ -92,26 +92,7 @@ namespace FeyonaBank.Controllers
                 return View("Verification", model);
             }
 
-        }
-
-        public IActionResult Transfer()
-        {
-            var model = new TransferViewModel();
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult Transfer(TransferViewModel vm)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = _bankRepo.Transfer(vm);
-
-              return PartialView("_TransferPartial", result);
-
-            }
-            return RedirectToAction("Transfer");
-        }
+        }     
 
     }
 }
