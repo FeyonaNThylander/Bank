@@ -1,0 +1,43 @@
+﻿@model FeyonaBank.ViewModels.TransactionsViewModel
+
+@{
+    ViewData["Title"] = "Verification";
+}
+
+<body>
+    <div class="container body-content">
+        <br />
+        <br />
+        <h1>Verification</h1>
+        <hr />
+
+
+        <br />
+        <br />
+
+        @{
+            var transaction = "";
+            if (ViewBag.Message == "You have successfully made a withdrawl!")
+            {
+                transaction = "WITHDRAW";
+            }
+            if (ViewBag.Message == "You have successfully made a deposit!")
+            {
+                transaction = "DEPOSIT";
+
+            }
+
+            <h2>@ViewBag.Message</h2>
+            <br />
+
+            <p>
+                <h3>Details:</h3>
+                <b>Account ID: </b>@Model.BankAccount.AccountId<br />
+                <b>Transaction:</b> @transaction <br />
+                <b>Amount:</b> @Model.Amount SEK <br />
+                <b>Current balance: </b>@Model.BankAccount.Balance SEK
+            </p>
+        }
+
+    </div>
+</body>

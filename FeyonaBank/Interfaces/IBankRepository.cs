@@ -10,5 +10,8 @@ namespace FeyonaBank.Interfaces
     {
 
         List<Customer> GetAllCustomers();
+
+        bool DepositAmount(int amount, Account bankAccount);
+        bool WithdrawAmount(int amount, Account bankAccount);
     }
 }

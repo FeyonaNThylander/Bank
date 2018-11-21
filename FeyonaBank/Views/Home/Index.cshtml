@@ -5,8 +5,10 @@
 
 <body>
     <div class="container body-content">
+        <br />
+        <br />
         <h1>Customers</h1>
-        <h3>List of customer and bankaccounts</h3>
+        <h3>- list of customer and bankaccounts</h3>
         <hr />
         <br />
         <br />
@@ -37,7 +39,7 @@
                         <td>
                             @foreach (var account in item.BankAccounts)
                             {
-                                <p><b>@account.AccountNumber</b></p>
+                                <p><b>@account.AccountId</b></p>
 
                             }
                         </td>
