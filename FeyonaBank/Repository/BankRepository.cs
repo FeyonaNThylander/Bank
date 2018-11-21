@@ -136,10 +136,12 @@ namespace FeyonaBank.Models
 
         public string Transfer(TransferViewModel model)
         {
+
             if(model.Amount == 0)
             {
                 return "<p>You can't transfer 0 SEK.</p>";
             }
+
 
             var recieverIsExistingAccount = IsCorrectAccountNo(model.RecieveAccount.AccountId);
             var transferIsExistingAccount = IsCorrectAccountNo(model.TransferAccount.AccountId);
