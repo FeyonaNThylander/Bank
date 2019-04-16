@@ -1,6 +1,6 @@
-# FeyonaBank
+# Bank
 
-Application Lifecycle Management - Inlämningsuppgift 1
+Application Lifecycle Management 
 
-Projektägare: Feyona Naluzzi Thylander
-Kodgranskare: Helena Hedström
+Project owner: Feyona Naluzzi Thylander
+Code reviewer: Helena Hedström
